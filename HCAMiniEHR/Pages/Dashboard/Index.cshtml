@@ -1,0 +1,28 @@
+﻿@page
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h3 class="mb-4">Overview</h3>
+
+<div class="dashboard-cards">
+
+    <div class="card card-blue">
+        <img src="@Url.Content("~/images/patients.svg.svg")" />
+        <h5>Patients</h5>
+        <p>Manage patient records</p>
+    </div>
+
+    <div class="card card-green">
+        <img src="@Url.Content("~/images/appointments.svg.svg")" />
+        <h5>Appointments</h5>
+        <p>Schedule & track visits</p>
+    </div>
+
+    <div class="card card-purple">
+        <img src="@Url.Content("~/images/lab.svg.svg")" />
+        <h5>Lab Orders</h5>
+        <p>View test requests</p>
+    </div>
+
+</div>

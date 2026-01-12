@@ -1,0 +1,45 @@
+﻿@page
+@model HCAMiniEHR.Pages.LabOrders.IndexModel
+@{
+    ViewData["Title"] = "Lab Orders";
+}
+
+<h3 class="mb-4">Lab Orders</h3>
+
+<div class="card p-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h5>Lab Orders List</h5>
+        <a asp-page="/LabOrders/Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Lab Order
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Patient</th>
+                <th>Test</th>
+                <th>Ordered Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var lab in Model.LabOrders)
+            {
+                <tr>
+                    <td>@lab.LabOrderId</td>
+                    <td>@lab.Appointment.Patient.FullName</td>
+                    <td>@lab.TestName</td>
+                    <td>@lab.OrderedDate.ToString("dd-MM-yyyy")</td>
+                    <td>
+                        <span class="badge bg-info">@lab.Status</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

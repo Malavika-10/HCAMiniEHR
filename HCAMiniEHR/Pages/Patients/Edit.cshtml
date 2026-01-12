@@ -1,0 +1,43 @@
+﻿@page "{id:int}"
+@model HCAMiniEHR.Pages.Patients.EditModel
+
+<h3 class="mb-4">Edit Patient</h3>
+
+<div class="card p-4">
+    <form method="post">
+
+        <input type="hidden" asp-for="Patient.PatientId" />
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Full Name</label>
+                <input asp-for="Patient.FullName" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Gender</label>
+                <select asp-for="Patient.Gender" class="form-select">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Date of Birth</label>
+                <input asp-for="Patient.DateOfBirth" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label>Phone</label>
+                <input asp-for="Patient.Phone" class="form-control" />
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a asp-page="/Patients/Index" class="btn btn-secondary me-2">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>

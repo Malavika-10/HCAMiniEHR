@@ -1,0 +1,57 @@
+﻿@page
+@model HCAMiniEHR.Pages.Appointments.IndexModel
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<h3 class="mb-4">Appointments</h3>
+
+<div class="card p-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h5>Appointment List</h5>
+        <a asp-page="/Appointments/Create" class="btn btn-primary">
+            Add Appointment
+        </a>
+    </div>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var appt in Model.Appointments)
+            {
+                <tr>
+                    <td>@appt.AppointmentId</td>
+
+                    <td>
+                        @appt.Patient?.FullName
+                    </td>
+
+                    <td>
+                        @appt.Doctor?.Name   <!-- ✅ DOCTOR NAME -->
+                    </td>
+
+                    <td>
+                        @appt.AppointmentDate.ToString("dd-MM-yyyy HH:mm")
+                    </td>
+
+                    <td>
+                        <span class="badge bg-info">
+                            @appt.Status
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
