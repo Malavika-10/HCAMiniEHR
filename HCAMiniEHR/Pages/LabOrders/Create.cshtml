@@ -7,41 +7,51 @@
 <h3 class="mb-4">Add Lab Order</h3>
 
 <div class="card p-4">
-
     <form method="post">
 
+        <div asp-validation-summary="All" class="alert alert-danger"></div>
+        
+
+
+        <!-- Appointment -->
         <div class="mb-3">
             <label class="form-label">Appointment</label>
             <select asp-for="AppointmentId"
                     asp-items="Model.AppointmentList"
                     class="form-select">
-                <option value="">-- Select Appointment --</option>
+                <option value="0">-- Select Appointment --</option>
             </select>
+            <span asp-validation-for="AppointmentId" class="text-danger"></span>
         </div>
 
+        <!-- Test Name -->
         <div class="mb-3">
             <label class="form-label">Test Name</label>
             <input asp-for="TestName" class="form-control" />
+            <span asp-validation-for="TestName" class="text-danger"></span>
         </div>
 
+        <!-- Ordered Date -->
         <div class="mb-3">
             <label class="form-label">Ordered Date</label>
             <input asp-for="OrderedDate" type="date" class="form-control" />
+            <span asp-validation-for="OrderedDate" class="text-danger"></span>
         </div>
 
+        <!-- Status -->
         <div class="mb-3">
             <label class="form-label">Status</label>
             <select asp-for="Status" class="form-select">
-                <option>Pending</option>
-                <option>Completed</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
             </select>
         </div>
 
-        <div class="d-flex justify-content-end">
-            <a asp-page="/LabOrders/Index" class="btn btn-secondary me-2">Cancel</a>
-            <button type="submit" class="btn btn-primary">Save Lab Order</button>
-        </div>
-
+        <button type="submit" class="btn btn-primary">Save Lab Order</button>
     </form>
 
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

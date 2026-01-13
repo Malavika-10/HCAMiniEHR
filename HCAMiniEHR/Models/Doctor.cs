@@ -8,7 +8,11 @@ namespace HCAMiniEHR.Models
         public int DoctorId { get; set; }
 
         [Required]
+        [RegularExpression(@"^[A-Za-z\s]+$",
+        ErrorMessage = "Full Name must contain only letters.")]
         public string Name { get; set; } = string.Empty;
+        [RegularExpression(@"^[A-Za-z\s]+$",
+        ErrorMessage = "Full Name must contain only letters.")][Required]
 
         public string Specialization { get; set; } = string.Empty;
 

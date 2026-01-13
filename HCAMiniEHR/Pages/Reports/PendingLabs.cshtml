@@ -1,0 +1,95 @@
+﻿@page
+@model HCAMiniEHR.Pages.Reports.PendingLabsModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<h3 class="mb-4">Reports Dashboard</h3>
+
+<!-- ================= Pending Lab Orders ================= -->
+<h5>Pending Lab Orders</h5>
+<table class="table table-bordered mb-4">
+    <thead class="table-light">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Test</th>
+            <th>Ordered Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var l in Model.Report.PendingLabOrders)
+        {
+            <tr>
+                <td>@l.PatientName</td>
+                <td>@l.DoctorName</td>
+                <td>@l.TestName</td>
+                <td>@l.OrderedDate.ToString("dd-MM-yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- ================= Patients Without Follow-up ================= -->
+<h5>Patients Without Follow-up</h5>
+<table class="table table-bordered mb-4">
+    <thead class="table-light">
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Appointment Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Report.PatientsWithoutFollowUp)
+        {
+            <tr>
+                <td>@p.PatientName</td>
+                <td>@p.DoctorName</td>
+                <td>@p.AppointmentDate.ToString("dd-MM-yyyy HH:mm")</td>
+                <td>@p.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- ================= Appointments Per Day ================= -->
+<h5>Appointments Per Day</h5>
+<table class="table table-bordered mb-4">
+    <thead class="table-light">
+        <tr>
+            <th>Date</th>
+            <th>Total Appointments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.Report.AppointmentsPerDay)
+        {
+            <tr>
+                <td>@a.Date.ToString("dd-MM-yyyy")</td>
+                <td>@a.AppointmentCount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- ================= Doctor Appointment Count ================= -->
+<h5>Doctor Appointment Count</h5>
+<table class="table table-bordered">
+    <thead class="table-light">
+        <tr>
+            <th>Doctor</th>
+            <th>Total Appointments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model.Report.DoctorAppointmentCounts)
+        {
+            <tr>
+                <td>@d.DoctorName</td>
+                <td>@d.AppointmentCount</td>
+            </tr>
+        }
+    </tbody>
+</table>

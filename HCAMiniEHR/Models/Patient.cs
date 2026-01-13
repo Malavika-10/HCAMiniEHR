@@ -8,20 +8,24 @@ namespace HCAMiniEHR.Models
     {
         public int PatientId { get; set; }
 
-        [Required]
-        [MaxLength(100)]
+        [Required(ErrorMessage = "Full Name is required")]
+
+        [RegularExpression(@"^[A-Za-z\s]+$",
+        ErrorMessage = "Full Name must contain only letters.")]
         public string FullName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Gender is required")]
         public string Gender { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "DateOfBirth is required")]
         public DateTime DateOfBirth { get; set; }
 
-        [MaxLength(15)]
+        [Required(ErrorMessage = "Phone Number is required")]
+        [RegularExpression(@"^[0-9]{10}$",
+        ErrorMessage = "Phone number must be 10 digits.")]
         public string Phone { get; set; }
 
         // Navigation
-        public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }
